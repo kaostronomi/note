@@ -1,1 +1,1 @@
-# Catatan
+# NOTE FOR MY LIVE
