@@ -1,0 +1,333 @@
+KURANG SATU TUTORIAL TERAKHIR
+
+INSTALASI
+
+    ubuntu
+        sudo apt-get update && sudo apt-get install git
+    fedora
+        sudo dnf install git
+    centos
+        sudo yum install git
+    windows
+        download https://git-scm.com/
+
+MODE
+    
+    modified
+        keadaan file yang belum diapa-apakan.
+
+    stage
+        keadaan file yang sudah di tambahkan dan masuk ke cache git, tetapi belum masuk di commit
+
+    committed
+        keadaan file sudah siap dengan pembaruan.
+
+INIT
+    
+    tambahkan git init untuk memulai git projek (sekali saja)
+    $ git init
+
+ADD
+
+    menambahkan file
+    $ git add kamu.txt
+
+    menambahkan beberapa file
+    $ git add kamu.txt aku.txt
+
+    menambahkan semua file .txt
+    $ git add *.txt
+
+    menambahkan semua file
+    $ git add .
+    atau
+    $ git add -A
+    atau
+    $ git add --all
+
+COMMIT
+    
+    commit file
+    $ git commit -m "tambah berkas"
+
+LOG
+
+    melihat catatan log perubahan pada respositori
+    $ git log
+
+    menampilkan log yang lebih pendek
+    $ git log --oneline
+
+    melihat log pada revisi tertentu, kita bisa memasukan nomer revisi/commit.
+    $ git log cf08ca0837cf26f1c595be36bb3a6b815e311be1
+
+    melihat revisi pada file tertent
+    $ git log index.html
+
+    log revisi yang dilakukan oleh author tertentu
+    $ git log --author='akundia'
+    
+DIFF
+
+    contoh nomer commit = cf08ca0837cf26f1c595be36bb3a6b815e311be1
+    contoh nama berkas = berkas.txt
+
+    melihat perbandingan dengan nomer revisi/commit
+    $ git diff <nomer commit>
+
+    melihat perbandingan dengan nama berkas
+    $ git diff <nama berkas>
+
+    melihat perbandingan antar revisi/commit
+    $ git diff <nomer commit> <nomer commit>
+
+    melihat perbandingan antar cabang
+    $ git diff <nama cabang> <nama cabang>
+    contoh :
+    $ git diff master github/master
+
+    master = cabang lokal (selalu ada)
+    github/master = cabang dari remote yang sudah ditambahkan (git remote add github ...)
+
+PEMBATALAN REVISI
+
+    KETIKA MODIFIED
+        
+        jika revisi kita belum staged ataupun committed, kita bisa mengembalikannya menggunakan perintah git checkout
+        $ git checkout <nama berkas>
+
+    KETIKA STAGED
+        
+        membatalkan perubahan file yang sudah dalam kondisi staged yang merupakan kondisi file yang sudah di add (git add),
+        namun belum disimpan (git commit) ke dalam git.
+        $ git reset <nama berkas>
+
+    KETIKA COMMITED
+
+        membatalkan perubahan file yang sudah dalam kondisi commited (sudah git add dan git commit), caranya dengan mencari tahu dulu nomer commitnya dengan git log
+        $ git checkout <nomer commit> <nama berkas>
+        namun <nama berkas> tadi masih dalam keadaan staged, maka bisa dikembalikan dengan
+        $ git reset <nama berkas>
+
+        apabila kita ingin mengembalikan seluruh file dalam commit, kita cukup melakukan checkout ke nomer commit saja, tanpa diikuti nama file.
+        $ git checkout <nomer commit>
+
+        kembali ke 3 commit sebelumnya
+        $ git checkout HEAD~3 <nama berkas>
+
+        membatalkan semua perubahan yang ada ke nomer commit tertentu
+        $ git revert -n <nomer commit>
+
+BRANCH
+
+    Bayangkan anda sedang bekerja dengan tim pada suatu repositori Git. Repositori ini dikerjakan secara bersama-sama.
+    Kadang… akan terjadi konflik, karena kode yang kita tulis berbeda dengan yang lain.
+    Misalnya, Si A menulis kode untuk fitur X dengan algoritma yang ia ketahui. Sedangkan si B menulis dengan algoritma yang berbeda.
+    Lalu mereka melakukan commit, dan kode sumber jadi berantakan. Anggota tim yang lain menjadi pusing.
+
+    cabang utama biasanya disebut dengan "master"
+
+    melihat cabang
+    $ git branch
+
+    cara membuat cabang baru
+    $ git branch <nama branch>
+
+    pindah cabang
+    $ git checkout <nama branch>
+
+    menggabungkan cabang
+    pertama, kita harus pindah dulu ke cabang master.
+    $ git checkout master
+    setelah itu, barulah kita bisa menggabungkan dengan perintah git merge.
+    $ git merge <nama branch>
+
+    ketika merge dilakukan maka cabang akan tidak digunakan lagi dan perlu dihapus
+    $ git branch -d <nama branch>
+
+CHECKOUT 
+
+    membuat cabang baru berdasarkan kondisi kode di masa lalu,
+    cara ini bisa kita ibaratkan seperti menulis cerita baru dengan plot yang berbeda.
+    $ git checkout -b nama_cabang <nomer_commit>
+
+RESET
+
+    perintah git reset sering disebut sebagai perintah berbahaya yang dapat menghancurkan catatan sejarah perubahan.
+    hati-hati! perintah ini membuat kita tidak bisa kembali lagi ke masa depan. mau tidak mau, kita harus menulis ulang sejarah.
+
+    perintah ini memiliki tiga argumen atau opsi utama, yaitu --soft, --mixed, dan --hard.
+    --soft akan mengebalikan dengan kondisi file dalam keadaan staged
+    $ git reset --soft <nomer commit>
+    --mixed akan mengebalikan dengan kondisi file dalam keadaan modified
+    $ git reset --mixed <nomer commit>
+    --hard akan mengebalikan dengan kondisi file dalam keadaan commited
+    $ git reset --hard <nomer commit>
+
+    hati-hati! jangan lakukan git reset pada repositori yang sudah di bagikan ke publik, karena dapat merusaknya.
+
+REVERT
+
+    revert artinya mengembalikan. perintah ini lebih aman daripada git reset, karena tidak akan menghapus catatan sejarah revisi.
+    revert akan akan mengambil kondisi file yang ada di masa lalu, kemudian menggabungkannya dengan commit terakhir.
+    $ git revert -n <nomer commit>
+
+REPOSITORY
+    
+    gunanya untuk menyimpan repository,
+    bisa di server kantor atau bisa juga menggunakan layanan seperti github, gitlab, bitbucket, dll.
+        - github (github.com)
+        - gitlab (gitlab.com)
+        - bitbucket (bitbucket.com)
+
+    gunakan fitur "private" jika ada, kalau tidak maka pilih repo "public" saja
+    hapus ceklis "initial this repository with README"
+
+    pata tutorial ini asumsikan bahwa,
+    nama akun gitlab    = "akunku"
+    nama alamat email   = "akunku@email.com"
+    nama repository     = "balajar-git"
+
+USER SETTING
+
+    setting username
+    $ git config --global user.name "akunku"
+    setting email
+    $ git config --global user.email akunku@email.com
+    periksa konfigurasi
+    $ git config --list
+
+REMOTE
+
+    menambahkan remote
+    $ git remote add <nama remote> <url remote>
+
+    contoh nama remote  = origin
+    contoh url remote   = git@gitlab.com:akunku/belajar-git.git
+    contoh url remote   = https://gitlab.com/akunku/belajar-git.git
+
+    ada 2 cara setting repo, yaitu dengan HTTPS dan SSH.
+    cara yang mudah menggunakan HTTPS, tapi disarankan menggunakan SSH.
+
+    untuk yang menggunakan HTTPS:
+    $ git remote add remotesatu https://gitlab.com/{username}/{nama-repo}.git
+    contoh :
+    $ git remote add remotesatu https://gitlab.com/akunku/belajar-git.git
+
+    untuk yang menggunakan SSH:
+    $ git remote add remotedua git@gitlab.com:{username}/{nama-repo}.git
+    contoh :
+    $ git remote add remotedua git@gitlab.com:akunku/belajar-git.git
+
+    Apa bedanya?
+    Kalau kita menggunakan HTTPS, maka kita akan diminta password setiap kali melakukan push.
+    Sedangkan yang menggunakan SSH, kita tidak akan diminta password. Namun, kita harus melakukan konfigurasi SSH Key terlebih dahulu.
+    Saya lebih suka yang menggunakan SSH.
+
+    merubah nama remote
+    $ git remote rename remotelama remotebaru
+
+    merubah url remote
+    $ git remote set-url remotebaru git@gitlab.com:akunbaruku/belajar-git.git
+
+    menghapus nama remote
+    $ git remote remove remotebaru
+
+SSH
+
+    membuat private key dan public key
+    $ ssh-keygen
+        atau
+    $ ssh-keygen -t rsa -C "akunku@email.com" -b 4096
+
+    id_rsa adalah nama id anda (boleh nama atau inisial), misalnya akunku
+    passphrase adalah kata sandi anda, boleh dikosongi atau diisi, kemudian tekan enter
+
+    mengirim public key ke gitlab.com
+    $ cat *.pub
+    masukkan id.pub anda ke https://gitlab.com/profile/keys
+
+    tambahkan ssh anda
+    $ ssh-add ~/.ssh/akunku
+
+    test connect ssh ke gitlab
+    $ ssh -T git@github.com
+
+    supaya otomatis tidak menambahkan ssh-add lagi ketika restart
+    $ vim ~/.ssh/config
+        # GitLab.com server
+        Host github.com
+        IdentityFile ~/.ssh/akunku
+
+    untuk menghindari fix bad owner
+    $ chmod 600 ~/.ssh/config
+    
+PUSH
+
+    mengirim ke repository
+    $ git push -u <nama remote> <nama branch>
+    contoh :
+    $ git push origin master
+    artinya mengirim commit dari remote origin ke cabang utama (master)
+    $ git push django fitur-premium
+    artinya mengirim commit dari remote django ke cabang fitur-premium
+
+FETCH
+
+    Perintah git fetch hanya akan mengambil revisi (commit) saja dan
+    tidak langsung melakukan penggabungan (merge) terhadap repository lokal.
+    bila kita sudah membuat perubahan di repository lokal, maka sebaiknya
+    menggunakan git fetch agar perubahan yang kita lakukan tidak hilang.
+    $ git fetch <nama remote> <nama cabang>
+
+    melihat perbedaan cabang master/utama dengan cabang repository
+    $ git diff <nama cabang utama> <nama cabang repo>
+    contoh :
+    $ git diff master github/master
+
+    menggabungkan cabang utama dengan cabang repository
+    $ git merge <nama cabang> <nama cabang>
+    contoh :
+    $ git merge master github/master
+
+PULL
+
+    git pull akan mengambil revisi (commit) dan langsung melakukan 
+    penggabungan (merge) terhadap repository lokal.
+    bila kita tidak pernah melakukan perubahan apapun dan ingin mengambil
+    versi terakhir dari repository remote, maka gunakanlah git pull.
+    $ git pull <nama remote> <nama cabang>
+
+SCRPIT DEPLOY OTOMATIS
+
+    buat file baru "deploy"
+    $ touch deploy
+
+    berikan akses excute
+    $ chmod +700 deploy
+
+    buka deploy dengan teks editor kemudian isilah script berikut
+        #!/bin/bash
+
+        echo -e "\033[0;32mDeploying updates to GitLab...\033[0m"
+
+        # tambahkan perubahan ke Git
+        git add -A
+
+        # buat sebuah commit baru
+        msg="rebuilding site `date`"
+        if [ $# -eq 1 ]
+          then msg="$1"
+        fi
+        git commit -m "$msg"
+
+        # push atau upload ke gitlab
+        git push origin master
+
+    jalankan deploy otomatis
+    $ ./deploy
+
+    jalankan deploy otomatis dengan pesan
+    $ ./deploy "initial commit"
+
+the end

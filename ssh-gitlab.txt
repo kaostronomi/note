@@ -1,0 +1,28 @@
+#pindah ke direktori ssh
+cd ~/.ssh/ 
+
+# membuat private key dan public key
+ssh-keygen -t rsa -C "kaostronomi@gmail.com" -b 4096
+# ganti kaostronomi@gmail.com menjadi alamat surel anda
+# id_rsa adalah nama id anda (boleh nama atau inisial), misalnya kaostronomi
+# passphrase adalah kata sandi anda, boleh dikosongi atau diisi, kemudian tekan enter
+
+# mengirim public key ke github.com
+cat *.pub
+masukkan id.pub anda ke https://gitlab.com/profile/keys
+
+# tambahkan ssh anda
+eval `ssh-agent -s`
+ssh-add ~/.ssh/kaostronomi
+
+# test connect ssh ke gitlab
+ssh -T git@github.com
+
+# supaya otomatis tidak menambahkan ssh-add lagi
+vim ~/.ssh/config
+    # GitLab.com server
+    Host github.com
+    IdentityFile ~/.ssh/kaostronomi
+
+# fix bad owner
+chmod 600 ~/.ssh/config

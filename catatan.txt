@@ -1,0 +1,42 @@
+NOTE LIBRE OFFICE
+
+    terlintas ada cara untuk emmbed font di setting
+
+    ukuran caption gambar dan persamaan masih bermasalah
+        coba cek di buku skripsi
+        ukuran style gambar masih ragu
+            Above paragraph     : 1,74 cm
+        apa benar persamaan itu rata kanan
+        coba cek letak caption tabel dan gambar, apakah di atas atau dibawah
+            Position            : Above
+
+    saran aja, jangan dikasih efect capital atau Uppercase
+
+    line spacing untuk daftar isi (content 1-4) itu 1.5 lines apa double?
+    line spacing untuk daftar tabel (content 1-4) itu 1.5 lines apa double?
+    line spacing untuk daftar gambar (content 1-4) itu 1.5 lines apa double?
+    line spacing untuk daftar persamaan (content 1-4) itu 1.5 lines apa double?
+    line spacing untuk daftar pustaka/bibliography (content 1-4) itu 1.5 lines apa double?
+    line spacing untuk daftar index (content 1-4) itu 1.5 lines apa double?
+
+    Contents 1
+        > Tabs
+            Position            : 14 cm
+            Type                : Right
+            klik New.
+    Table Index 1 ? x
+    Figure Index 1 ? x
+    Bibliography 1 ? x
+    Index 1 ? x
+    (fix)
+
+
+NOTE UFL
+
+    snapd
+    google noto
+    sqlitegui
+
+NOTE HUGO
+
+    https://github.com/saey55/hugo-elate-theme.git

@@ -1,0 +1,138 @@
+NAMA SITUS dan URL
+
+    asumsikan jika,
+
+    - username gitlab           = "user"
+    - nama url yang diinginkan  = "user.gitlab.io"
+    - 2 repo
+        repo projek             = "blog"
+        repo deploy             = "user.gitlab.io"
+    - *direktori render hugo    = "public"
+    - theme user                = "kun"
+    - theme name                = "pikachu"
+
+REPOSITORY
+
+    daftar dan buatlah sebuah repository di:
+    - github (github.com), atau
+    - gitlab (gitlab.com), atau
+    - bitbucket (bitbucket.com)
+
+HUGO BASIC
+
+    masuk ke direktori proyek
+    $ cd blog
+
+    membuat proyek baru hugo
+    $ hugo new site .
+
+GIT BASIC
+    
+    membuat awalan git
+    $ git init
+
+    untuk yang menggunakan HTTPS:
+    $ git remote add origin https://gitlab.com/{username}/{repo-projek}.git
+        contoh:
+        $ git remote add origin https://gitlab.com/user/blog.git
+    untuk yang menggunakan SSH:
+    $ git remote add origin git@gitlab.com:{username}/{repo-projek}.git
+        contoh:
+        $ git remote add origin git@gitlab.com:user/blog.git
+
+UPLOAD KE GITHUB
+
+    $ git add .
+    $ git commit -m "commit pertama"
+    $ git push -u origin master
+
+SUBMODULE PUBLIC
+
+    untuk yang menggunakan HTTPS:
+    $ git submodule add -b master https://gitlab.com/{username}/{repo-deploy}.gitlab.io.git public
+        contoh:
+        $ git submodule add -b master https://gitlab.com/user/user.gitlab.io.git public
+    untuk yang menggunakan SSH:
+    $ git submodule add -b master git@gitlab.com:{username}/{repo-deploy}.gitlab.io.git public
+        contoh:
+        $ git submodule add -b master git@gitlab.com:user/user.gitlab.io.git public
+
+SUBMODULE THEME FROM OTHER REPO
+
+    untuk yang menggunakan HTTPS:
+    $ git submodule add https://gitlab.com/{theme-user}/{theme-name}.git themes/theme-name
+        contoh:
+        $ git submodule add https://gitlab.com/kun/pikachu.git themes/pikachu
+    untuk yang menggunakan SSH:
+    $ git submodule add git@gitlab.com:{theme-user}/{theme-name}.git themes/theme-name
+        contoh:
+        $ git submodule add git@gitlab.com:kun/pikachu.git themes/pikachu
+
+DEPLOY HUGO KE GITHUB
+    # generate statc web
+    hugo
+
+    # push ke repository
+    cd public
+    git add .
+    git commit -m "tes Deploy hugo"
+    git push -u origin master
+
+SCRPIT HUGO DEPLOY OTOMATIS (OPTIONAL)
+
+    buat file baru "deploy"
+    $ touch deploy
+
+    berikan akses excute
+    $ chmod +700 deploy
+
+    buka deploy dengan teks editor kemudian isilah script berikut
+        #!/bin/bash
+
+        echo -e "\033[0;32mDeploying updates to GitLab...\033[0m"
+
+        # genterate file statis
+        # if using a theme, replace by `hugo -t <yourtheme>`
+        hugo
+
+        # pindah ke direktoru publik
+        cd public
+        # tambahkan perubahan ke Git
+        git add -A
+
+        # buat sebuah commit baru
+        msg="rebuilding site `date`"
+        if [ $# -eq 1 ]
+          then msg="$1"
+        fi
+        git commit -m "$msg"
+
+        # push atau upload ke gitlab
+        git push origin master
+
+        # balik ke direktori sebelumnya
+        cd ..
+    simpan
+
+    jalankan deploy otomatis
+    $ ./deploy
+
+    jalankan deploy otomatis dengan pesan
+    $ ./deploy "tes deploy web hugo ke gitlab"
+
+SCRPIT HUGO UPDATE THEME OTOMATIS (OPTIONAL)
+
+    buat file baru "update-theme"
+    $ touch update-theme
+
+    berikan akses excute
+    $ chmod +700 update-theme
+
+    buka update-theme dengan teks editor kemudian isilah script berikut
+        #!/bin/bash
+        git submodule init
+        git submodule update
+    simpan
+
+    jalankan update-theme
+    $ ./update-theme
