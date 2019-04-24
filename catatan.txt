@@ -34,7 +34,6 @@ NOTE LIBRE OFFICE
 NOTE UFL
 
     snapd
-    google noto
     sqlitegui
 
 NOTE HUGO
