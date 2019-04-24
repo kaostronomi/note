@@ -205,9 +205,6 @@ REMOTE
     contoh nama remote  = origin
     contoh url remote   = git@gitlab.com:akunku/belajar-git.git
     contoh url remote   = https://gitlab.com/akunku/belajar-git.git
-    
-    melihat nama remote
-    git remote --list
 
     ada 2 cara setting repo, yaitu dengan HTTPS dan SSH.
     cara yang mudah menggunakan HTTPS, tapi disarankan menggunakan SSH.
