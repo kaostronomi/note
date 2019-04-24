@@ -108,7 +108,7 @@ SCRPIT HUGO DEPLOY OTOMATIS (OPTIONAL)
         git commit -m "$msg"
 
         # push atau upload ke gitlab
-        git push origin master
+        git push -u origin master
 
         # balik ke direktori sebelumnya
         cd ..

@@ -322,7 +322,7 @@ SCRPIT DEPLOY OTOMATIS
         git commit -m "$msg"
 
         # push atau upload ke gitlab
-        git push origin master
+        git push -u origin master
 
     jalankan deploy otomatis
     $ ./deploy
