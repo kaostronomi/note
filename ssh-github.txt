@@ -9,7 +9,7 @@ ssh-keygen -t rsa -C "kaostronomi@gmail.com" -b 4096
 
 # mengirim public key ke github.com
 cat *.pub
-masukkan id.pub anda ke https://gitlab.com/profile/keys
+masukkan id.pub anda ke https://github.com/settings/keys
 
 # tambahkan ssh anda
 eval `ssh-agent -s`
