@@ -1,0 +1,11 @@
+gpg --full-gen-key
+1
+4096
+0
+y
+name
+email
+comment
+
+gpg --list-secret-keys --keyid-format LONG <your_email>
+gpg --armor --export <your sec>
