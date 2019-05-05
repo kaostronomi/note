@@ -26,5 +26,3 @@ vim ~/.ssh/config
 
 # fix bad owner
 chmod 600 ~/.ssh/config
-
-hervy
