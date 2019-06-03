@@ -12,7 +12,7 @@ INSTALASI
         download https://git-scm.com/
 
 MODE
-    
+
     modified
         keadaan file yang belum diapa-apakan.
 
@@ -23,7 +23,7 @@ MODE
         keadaan file sudah siap dengan pembaruan.
 
 INIT
-    
+
     tambahkan git init untuk memulai git projek (sekali saja)
     $ git init
 
@@ -46,7 +46,7 @@ ADD
     $ git add --all
 
 COMMIT
-    
+
     commit file
     $ git commit -m "tambah berkas"
 
@@ -66,7 +66,7 @@ LOG
 
     log revisi yang dilakukan oleh author tertentu
     $ git log --author='akundia'
-    
+
 DIFF
 
     contoh nomer commit = cf08ca0837cf26f1c595be36bb3a6b815e311be1
@@ -92,12 +92,12 @@ DIFF
 PEMBATALAN REVISI
 
     KETIKA MODIFIED
-        
+
         jika revisi kita belum staged ataupun committed, kita bisa mengembalikannya menggunakan perintah git checkout
         $ git checkout <nama berkas>
 
     KETIKA STAGED
-        
+
         membatalkan perubahan file yang sudah dalam kondisi staged yang merupakan kondisi file yang sudah di add (git add),
         namun belum disimpan (git commit) ke dalam git.
         $ git reset <nama berkas>
@@ -145,7 +145,13 @@ BRANCH
     ketika merge dilakukan maka cabang akan tidak digunakan lagi dan perlu dihapus
     $ git branch -d <nama branch>
 
-CHECKOUT 
+    mengganti nama branch
+    $ git checkout <branch lama>
+    $ git branch -m <branch baru>
+    jika branch lama sudah terdorong ke repositori remote maka
+    $ git push origin --delete <branch lama>
+
+CHECKOUT
 
     membuat cabang baru berdasarkan kondisi kode di masa lalu,
     cara ini bisa kita ibaratkan seperti menulis cerita baru dengan plot yang berbeda.
@@ -173,7 +179,7 @@ REVERT
     $ git revert -n <nomer commit>
 
 REPOSITORY
-    
+
     gunanya untuk menyimpan repository,
     bisa di server kantor atau bisa juga menggunakan layanan seperti github, gitlab, bitbucket, dll.
         - github (github.com)
@@ -261,7 +267,7 @@ SSH
 
     untuk menghindari fix bad owner
     $ chmod 600 ~/.ssh/config
-    
+
 PUSH
 
     mengirim ke repository
